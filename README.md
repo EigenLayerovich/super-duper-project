@@ -4,7 +4,7 @@
 > Built on the **iDos Games** engine for the *Solana Superteam Kazakhstan × iDos Games* side track of
 > Colosseum's **Crypto World's Fair** hackathon.
 
-**Play:** `<link to the idosgames.com page>` · **Demo video:** `<link>` · **Token:** `$DALA` on Solana mainnet, `<mint address>`
+**Play:** https://ooecv9ij.idos.games · **Demo video:** `<link>` · **Token:** `$DALA` on Solana mainnet, mint [`FNehq91VuhXegw34F4huFb6QZLwSSgoY8LCNf9bVidos`](https://solscan.io/token/FNehq91VuhXegw34F4huFb6QZLwSSgoY8LCNf9bVidos)
 
 ---
 

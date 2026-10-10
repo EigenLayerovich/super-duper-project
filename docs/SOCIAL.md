@@ -1,7 +1,7 @@
 # X / Twitter kit: Dala Batyrs
 
-Placeholders to replace: `[PLAY LINK]` (the idosgames.com page), `[MINT]` (the $DALA mint address),
-`[GITHUB]`, `[VIDEO]`.
+Filled in: play link `https://ooecv9ij.idos.games` and the $DALA mint `FNehq91VuhXegw34F4huFb6QZLwSSgoY8LCNf9bVidos`.
+Placeholders still to replace: `[GITHUB]`, `[VIDEO]`.
 
 Handles: `@iDosGamesEngine` (from idosgames.com) and `@solana`. Check the exact handles for
 **Superteam Kazakhstan** and **Colosseum** on their sites before you tag them.
@@ -15,7 +15,7 @@ Handles: `@iDosGamesEngine` (from idosgames.com) and `@solana`. Check the exact 
 2. `Ride the Great Steppe as a batyr 🐎 Idle auto-battler from Kazakhstan · $DALA on Solana ◎ · Superteam KZ × iDos Games hackathon`
 3. `Батыры Степи · Dala Batyrs 🏹 Idle game about Kazakh legends · $DALA on Solana · Play in browser, no download`
 
-**Location:** `The Great Steppe 🇰🇿` · **Website:** `[PLAY LINK]`
+**Location:** `The Great Steppe 🇰🇿` · **Website:** `https://ooecv9ij.idos.games`
 **Avatar:** `assets/brand/dala-logo-1024.png` · **Header:** `assets/brand/dala-banner-1500x500.png`
 
 ---
@@ -31,7 +31,7 @@ Someone has to ride out.
 Meet Dala Batyrs 🏹, a cozy idle RPG set across Kazakhstan, with $DALA on Solana.
 
 Play free in your browser 👇
-[PLAY LINK]
+https://ooecv9ij.idos.games
 ```
 Attach: token image.
 
@@ -64,7 +64,7 @@ Wallet is optional. Anyone can just play.
 Built for the @iDosGamesEngine × Superteam Kazakhstan side track of Colosseum's Crypto World's Fair 🇰🇿
 
 ❤️ Like & ➕ follow the game on idosgames: half the ranking is community votes!
-[PLAY LINK]
+https://ooecv9ij.idos.games
 ```
 
 ### 2. Lore: the heroes' hats
@@ -86,7 +86,7 @@ In Kazakh tales, Aidahar is a great dragon-serpent guarding treasure 🐉
 In Dala Batyrs it waits at the end of the journey, in the red walls of the Charyn canyon.
 
 Five chapters. One dragon. How far can your batyr ride?
-[PLAY LINK]
+https://ooecv9ij.idos.games
 ```
 
 ### 4. Kumys
@@ -132,8 +132,8 @@ $DALA is live on Solana ◎🐎
 
 The currency of the Great Steppe: earn it in battle, spend it at the bazaar, hold it for VIP.
 
-Mint: [MINT]
-Play: [PLAY LINK]
+Mint: FNehq91VuhXegw34F4huFb6QZLwSSgoY8LCNf9bVidos
+Play: https://ooecv9ij.idos.games
 
 Always check the mint address. We'll never DM you first.
 ```
@@ -155,7 +155,7 @@ Half the score comes from players like you:
 ❤️ Like = 1 point
 ➕ Follow = 2 points
 
-Takes 10 seconds 👉 [PLAY LINK]
+Takes 10 seconds 👉 https://ooecv9ij.idos.games
 Рахмет! 🙏
 ```
 
@@ -167,7 +167,7 @@ Takes 10 seconds 👉 [PLAY LINK]
 
 Играй бесплатно в браузере, $DALA на Solana ◎
 ❤️ Лайк и подписка помогают нам в конкурсе!
-[PLAY LINK]
+https://ooecv9ij.idos.games
 ```
 
 ---
