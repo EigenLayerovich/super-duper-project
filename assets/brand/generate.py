@@ -1,4 +1,4 @@
-# Generates the $DALA brand art as SVG: python3 generate.py logo|image|banner > file.svg
+# Generates the $DALA brand art as SVG: python3 generate.py logo|image|banner|banner169 > file.svg
 import math, sys
 out = sys.argv[1]
 
@@ -129,4 +129,34 @@ elif out == "banner":
   fill="#ffffff" stroke="#4a2c08" stroke-width="8" paint-order="stroke" letter-spacing="2">DALA BATYRS · STEPPE LEGENDS</text>
 <text x="640" y="335" text-anchor="middle" {font} font-weight="700" font-size="28"
   fill="#ffffff" stroke="#4a2c08" stroke-width="6" paint-order="stroke" letter-spacing="2">IDLE GAME ON SOLANA · IDOSGAMES.COM</text>
+</svg>''')
+elif out == "banner169":
+    # 1920x1080 (16:9) app banner. Cards may crop the edges, so the coin and title stay in the middle.
+    W, H = 1920, 1080
+    G = 800  # ground line
+    hills = "".join(f'<ellipse cx="{x}" cy="{G - 30 + (x // 200 % 2) * 18}" rx="260" ry="90" fill="#a9b85c"/>' for x in range(-80, W + 200, 230))
+    peaks = "".join(
+        f'<path d="M{x-230},{G-90} L{x},{G-90-h} L{x+230},{G-90} Z" fill="#7d8fb0"/>'
+        f'<path d="M{x-h*0.2:.0f},{G-90-h*0.8:.0f} L{x},{G-90-h} L{x+h*0.2:.0f},{G-90-h*0.8:.0f} Z" fill="#fff"/>'
+        for x, h in ((1180, 300), (1500, 380), (1800, 280)))
+    yurts = yurt(170, 870, 1.5) + yurt(360, 880, 1.0) + yurt(1280, 885, 1.1) + yurt(1760, 875, 1.4)
+    font = "font-family=\"Inter, 'DejaVu Sans', sans-serif\""
+    print(f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}">{DEFS}
+<linearGradient id="bsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f9de8"/><stop offset="1" stop-color="#c4ebff"/></linearGradient>
+<rect width="{W}" height="{H}" fill="url(#bsky)"/>
+<g fill="#ffffff" opacity=".9"><ellipse cx="260" cy="150" rx="120" ry="32"/><ellipse cx="310" cy="128" rx="74" ry="36"/>
+<ellipse cx="1500" cy="140" rx="130" ry="30"/><ellipse cx="1455" cy="120" rx="70" ry="32"/></g>
+{peaks}
+{hills}
+<rect y="{G}" width="{W}" height="{H-G}" fill="#d8b878"/><rect y="{G-8}" width="{W}" height="16" fill="#9aae45"/>
+{yurts}
+{coin(560, 470, 290)}
+<text x="1330" y="440" text-anchor="middle" {font} font-weight="900" font-size="210"
+  fill="#fff0a8" stroke="#4a2c08" stroke-width="22" paint-order="stroke" letter-spacing="8">DALA</text>
+<text x="1330" y="560" text-anchor="middle" {font} font-weight="900" font-size="112"
+  fill="#fff0a8" stroke="#4a2c08" stroke-width="16" paint-order="stroke" letter-spacing="4">BATYRS</text>
+<text x="1330" y="650" text-anchor="middle" {font} font-weight="800" font-size="40"
+  fill="#ffffff" stroke="#4a2c08" stroke-width="9" paint-order="stroke" letter-spacing="3">STEPPE LEGENDS · $DALA ON SOLANA</text>
+<text x="960" y="1000" text-anchor="middle" {font} font-weight="700" font-size="40"
+  fill="#ffffff" stroke="#4a2c08" stroke-width="8" paint-order="stroke" letter-spacing="3">IDLE RPG ACROSS KAZAKHSTAN · PLAY FREE IN YOUR BROWSER</text>
 </svg>''')
