@@ -54,6 +54,7 @@ import {
   sortedStores,
 } from "./model";
 import { t } from "./i18n";
+import { VIP_STORE_ID, VipCard } from "./VipCard";
 
 // The shop, drawn from the storefront RESOLVED for this player (client.store.getStorefront — never
 // from the raw config): rotation, limits, badges and timers are computed by the server. Layout of the
@@ -146,6 +147,7 @@ export function StoreScreen({ args }: FeatureScreenProps): ReactNode {
         value={store.StoreID}
         onChange={setStoreID}
       />
+      {store.StoreID === VIP_STORE_ID ? <VipCard /> : null}
       {first ? (
         <div key={`${store.StoreID}:${first.SectionID}`}>
           <SectionTitle

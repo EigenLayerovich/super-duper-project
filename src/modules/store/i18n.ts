@@ -12,6 +12,11 @@ const EN = {
   emptyShop: "The shop is empty. Add offers in LiveOps → Store.",
   left: "left",
   retry: "Retry",
+  vipPerk: "+25% idle Altyn",
+  vipDays: "days",
+  vipActiveUntil: "Active until",
+  vipExtend: "Extend for",
+  vipBought: "VIP is active!",
 } as const;
 
 export const t = makeT<keyof typeof EN>(EN, {
@@ -26,4 +31,9 @@ export const t = makeT<keyof typeof EN>(EN, {
   emptyShop: "В магазине пусто. Добавьте товары в LiveOps → Store.",
   left: "осталось",
   retry: "Повторить",
+  vipPerk: "+25% к пассивному Алтыну",
+  vipDays: "дней",
+  vipActiveUntil: "Активен до",
+  vipExtend: "Продлить за",
+  vipBought: "VIP активирован!",
 });
