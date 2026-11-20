@@ -1,0 +1,60 @@
+# Builds the game and publishes it to GitHub Pages, so it has an HTTPS address of its own for the
+# Telegram Mini App: https://eigenlayerovich.github.io/super-duper-project/
+#
+# One-time setup (repo Settings):
+#   Pages   → Build and deployment → Source: "GitHub Actions"
+#   Secrets and variables → Actions:
+#     secret   VITE_SOLANA_RPC_URL            Helius RPC URL (in-game $DALA deposits break without it)
+#     variable VITE_WALLETCONNECT_PROJECT_ID  Reown project id (mobile wallet sign-in in Telegram)
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [claude/agent-toolkit-aws-setup-ny4vmc]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Check the RPC secret is set
+        env:
+          VITE_SOLANA_RPC_URL: ${{ secrets.VITE_SOLANA_RPC_URL }}
+        run: |
+          if [ -z "$VITE_SOLANA_RPC_URL" ]; then
+            echo "::error::Add the VITE_SOLANA_RPC_URL secret, or in-game \$DALA deposits will fail."
+            exit 1
+          fi
+      - run: npm run build
+        env:
+          VITE_BASE: ./
+          VITE_SOLANA_RPC_URL: ${{ secrets.VITE_SOLANA_RPC_URL }}
+          VITE_WALLETCONNECT_PROJECT_ID: ${{ vars.VITE_WALLETCONNECT_PROJECT_ID }}
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

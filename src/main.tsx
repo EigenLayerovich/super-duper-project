@@ -6,6 +6,7 @@ import { installPreviewProbe } from "@idosgames/app-shell/preview-probe";
 import "./solanaRpc";
 import { createIDosGamesClient } from "@idosgames/core";
 import { installAnalytics } from "./analytics";
+import { setupTelegram } from "./telegram";
 import {
   DefaultLoginScreen,
   DefaultPlayAccessScreen,
@@ -34,6 +35,7 @@ const client = createIDosGamesClient({
   throttleMs: 0,
 });
 
+setupTelegram();
 installAnalytics(client);
 
 client.on("error:global", (message) => {

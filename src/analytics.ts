@@ -1,4 +1,5 @@
 import type { IDosGamesClient } from "@idosgames/core";
+import { IN_TELEGRAM } from "./telegram";
 
 // Funnel and economy events for the iDos analytics dashboard (DAU, retention, conversion).
 //
@@ -6,7 +7,7 @@ import type { IDosGamesClient } from "@idosgames/core";
 // `Analytics.Enabled` switched on. The automatic idos_* events (first open, session start) come
 // from the SDK itself. These are the game's own milestones on top of them:
 //
-//   login               a player signed in                      method: wallet | other
+//   login               a player signed in                      method (Telegram, Email, wallet…), telegram
 //   stage_cleared       a stage was beaten                      chapter, stage, global_stage
 //   chapter_cleared     the first clear of a chapter's last stage chapter
 //   idle_collected      offline/idle gold was collected          value = amount
@@ -38,14 +39,14 @@ export function track(name: string, params?: Params, value?: number): void {
 export function installAnalytics(client: IDosGamesClient): void {
   current = client;
   client.on("auth:loggedIn", () => {
-    let method = "other";
+    let method = String(client.auth.lastAuthType ?? "other");
     try {
-      method = sessionStorage.getItem("dala:login") === "wallet" ? "wallet" : "other";
+      if (sessionStorage.getItem("dala:login") === "wallet") method = "wallet";
       sessionStorage.removeItem("dala:login");
     } catch {
       // storage blocked
     }
-    track("login", { method });
+    track("login", { method, telegram: IN_TELEGRAM });
   });
   client.on("character:levelUpgraded", () => track("hero_ranked_up"));
   client.on("lootbox:opened", () => track("chest_opened"));
