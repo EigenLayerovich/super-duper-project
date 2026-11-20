@@ -5,6 +5,7 @@ import { installPreviewProbe } from "@idosgames/app-shell/preview-probe";
 // Before anything that loads @solana/web3.js: routes the wallet's Solana RPC calls to one that allows browsers.
 import "./solanaRpc";
 import { createIDosGamesClient } from "@idosgames/core";
+import { installAnalytics } from "./analytics";
 import {
   DefaultLoginScreen,
   DefaultPlayAccessScreen,
@@ -32,6 +33,8 @@ const client = createIDosGamesClient({
   buildKey: BUILD_KEY.length > 0 ? BUILD_KEY : undefined,
   throttleMs: 0,
 });
+
+installAnalytics(client);
 
 client.on("error:global", (message) => {
   console.error("[idos] global error:", message);
