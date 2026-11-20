@@ -2,6 +2,8 @@
 // при загрузке своего модуля, и всё, что упадёт ниже по старту (включая config.ts на нераспознанном
 // тайтле), уже попадёт в его лог — а значит доедет до AI-кодера. Вне превью не делает ничего.
 import { installPreviewProbe } from "@idosgames/app-shell/preview-probe";
+// Before anything that loads @solana/web3.js: routes the wallet's Solana RPC calls to one that allows browsers.
+import "./solanaRpc";
 import { createIDosGamesClient } from "@idosgames/core";
 import {
   DefaultLoginScreen,
