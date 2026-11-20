@@ -1,4 +1,5 @@
 import { LazyWalletLogin } from "@idosgames/wallet/react/lazy";
+import { markWalletLogin } from "./analytics";
 import type { RenderLinkWallet, RenderWalletLogin } from "@idosgames/app-shell";
 import { ENV_WALLETCONNECT_PROJECT_ID } from "./env";
 import {
@@ -41,7 +42,10 @@ export const renderWalletLogin: RenderWalletLogin = ({
   <LazyWalletLogin
     client={client}
     networkID={IDOS_WEB3_NETWORK_ID || "bsc"}
-    onAuthenticated={onAuthenticated}
+    onAuthenticated={() => {
+      markWalletLogin();
+      onAuthenticated();
+    }}
     disabled={disabled}
     style={style}
     walletConnectProjectId={

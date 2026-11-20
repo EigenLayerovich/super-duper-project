@@ -33,6 +33,8 @@ export default defineConfig(() => {
     Object.entries(sourceAliases).filter(([, path]) => existsSync(path)),
   );
   return {
+    // "/" for the iDos host; "./" (VITE_BASE) for a sub-path host such as GitHub Pages.
+    base: process.env.VITE_BASE || "/",
     plugins: [react()],
     resolve: { alias },
     server: { port: 5180 },

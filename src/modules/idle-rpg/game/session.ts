@@ -37,7 +37,8 @@ import {
   type HeroModelView,
   type StatInfo,
 } from "./heroStats";
-import { stageInfo } from "./stages";
+import { STAGES_PER_CHAPTER, stageInfo } from "./stages";
+import { track } from "../../../analytics";
 
 /** The private custom-data key of the stage progress ("." and "$" are not allowed in keys). */
 export const PROGRESS_KEY = "idle_rpg_progress";
@@ -272,6 +273,7 @@ export class IdleSession {
     const seconds = Number(res.data.AccruedSeconds ?? 0);
     if (amount <= 0) return;
     this.lastCollect = { amount, at: Date.now() };
+    track("idle_collected", { away: first && seconds >= AWAY_MIN_SECONDS }, amount);
     if (first && seconds >= AWAY_MIN_SECONDS)
       this.away = { amount, seconds, currencyID: income.currencyID };
     this.changed();
@@ -334,6 +336,7 @@ export class IdleSession {
     }
     q.pending = Math.max(0, q.pending - levels);
     this.report(METRIC_STAT_ENHANCED, levels);
+    track("stat_enhanced", { stat: statID }, levels);
     void this.pumpEnhance(statID);
   }
 
@@ -369,6 +372,14 @@ export class IdleSession {
   private stageCleared(stage: number): void {
     const info = stageInfo(stage);
     this.callbacks.onStageCleared?.(info.chapter, info.stage);
+    track("stage_cleared", {
+      chapter: info.chapter,
+      stage: info.stage,
+      global_stage: info.index,
+    });
+    // The battle has already moved `best` past this stage, so a first clear is cleared + 1 === best.
+    if (info.stage === STAGES_PER_CHAPTER && info.index + 1 === this.battle.best)
+      track("chapter_cleared", { chapter: info.chapter });
     this.report(METRIC_STAGE_CLEARED, 1);
     this.scheduleSave();
   }
